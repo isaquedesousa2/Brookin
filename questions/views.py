@@ -1,5 +1,5 @@
 import json
-from django.http import HttpResponse
+from django.http import Http404, HttpResponse
 from django.shortcuts import render, redirect
 from .models import Answers, Questions, Comments, Category
 from account.models import Account
@@ -7,29 +7,10 @@ from django.contrib.auth.decorators import login_required
 
 def home(request):
     if request.user.is_authenticated:
-        categorys = Category.objects.all()
-        if request.method == 'GET':           
-            questions = Questions.objects.order_by('-date')
-            return render(request, 'home_secondary.html', {'questions': questions, 'categorys': categorys})
-        else:
-            level = request.POST.get('level')
-            response = request.POST.get('response')
+        categorys = Category.objects.all() 
+        questions = Questions.objects.order_by('-date')
 
-            if response == '1' and level == 'T':
-                questions = Questions.objects.order_by('-date')
-                return render(request, 'home_secondary.html', {'questions': questions, 'categorys': categorys})
-
-            if level != 'T' and response != '1':
-                questions = Questions.objects.filter(level=level, was_answered=response).order_by('-date')
-                return render(request, 'home_secondary.html', {'questions': questions, 'categorys': categorys})
-                
-            if level != 'T' and response == '1':
-                questions = Questions.objects.filter(level=level).order_by('-date')
-                return render(request, 'home_secondary.html', {'questions': questions, 'categorys': categorys})
-            
-            if level == 'T' and response != '1':
-                questions = Questions.objects.filter(was_answered=response).order_by('-date')
-                return render(request, 'home_secondary.html', {'questions': questions, 'categorys': categorys})
+        return render(request, 'home_secondary.html', {'questions': questions, 'categorys': categorys})
             
     else:   
         return render(request, 'home_primary.html')
@@ -129,9 +110,31 @@ def new_question(request):
 
 def filter_category(request, id):
     categorys = Category.objects.all()
-
     questions = Questions.objects.filter(category=Category.objects.filter(id=int(id)).first())
+
     return render(request, 'home_secondary.html', {'questions': questions, 'categorys': categorys})
+
+def filter_options(request):
+    if request.method == 'GET':
+        categorys = Category.objects.all()
+        level = request.POST.get('level')
+        response = request.POST.get('response')
+
+        if response == 'Todas' and level == 'Todos os niveis':
+            questions = Questions.objects.order_by('-date')
+
+        if level != 'Todos os niveis' and response != 'Todas':
+            questions = Questions.objects.filter(level=level, was_answered=response).order_by('-date')
+            
+        if level != 'Todos os niveis' and response == 'Todas':
+            questions = Questions.objects.filter(level=level).order_by('-date')
+        
+        if level == 'Todos os niveis' and response != 'Todas':
+            questions = Questions.objects.filter(was_answered=response).order_by('-date')
+
+        return render(request, 'home_secondary.html', {'questions': questions, 'categorys': categorys})
+
+    raise Http404()
 
 
 def search(request):
@@ -139,4 +142,5 @@ def search(request):
         categorys = Category.objects.all()
         search = request.GET.get('busca')
         questions = Questions.objects.filter(question__icontains=search)
+        
         return render(request, 'home_secondary.html', {'questions': questions, 'categorys': categorys})

@@ -27,18 +27,18 @@
                 </div>
             </div>
             <div class="box-filter">
-                <form action="{% url 'home' %}" method="POST">{% csrf_token %}
+                <form action="{% url 'filter_options' %}" method="GET">
                     <div class="options d-flex gap-5">
                         <select name="level" class="form-select" aria-label="Default select example">
-                            <option selected value="T">Todos os niveis</option>
-                            <option value="EF">Ensino fundamental (básico)</option>
-                            <option value="EM">Ensino médio (secundário)</option>
-                            <option value="ES">Ensino superior</option>
+                            <option selected value="Todos os niveis">Todos os niveis</option>
+                            <option value="Ensino fundamental (básico)">Ensino fundamental (básico)</option>
+                            <option value="Ensino médio (secundário)">Ensino médio (secundário)</option>
+                            <option value="Ensino superior">Ensino superior</option>
                           </select>
-                          <select name="response" class="form-select" aria-label="Default select example">
-                            <option selected value="1">Todas</option>
-                            <option value="False">Sem respostas</option>
-                            <option value="True">Respondidas</option>
+                          <select name="respostas" class="form-select" aria-label="Default select example">
+                            <option selected value="Todas">Todas</option>
+                            <option value="Sem respostas">Sem respostas</option>
+                            <option value="Respondidas">Respondidas</option>
                           </select>
                     </div>
                       <button type="submit" class="btn btn-primary">Filtrar</button>

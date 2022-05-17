@@ -11,5 +11,6 @@ urlpatterns = [
     path('adicionar_resposta/<int:id>', views.add_response, name='add_response'),
     path('nova_questao', views.new_question, name='new_question'),
     path('categoria/<int:id>', views.filter_category, name='filter_category'),
+    path('filtro', views.filter_options, name='filter_options'),
     path('pesquisa', views.search, name='search'),
 ]

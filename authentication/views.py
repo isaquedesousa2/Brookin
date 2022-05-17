@@ -1,5 +1,5 @@
 from django.shortcuts import redirect, render
-from django.contrib.auth import authenticate, login as login_user, logout
+from django.contrib.auth import authenticate, login as login_user, logout as logout_user
 from django.http import Http404, HttpResponse
 from account.models import Account
 from .models import User
@@ -21,7 +21,7 @@ def validate_login(request):
         login = request.POST.get('login')
         password = request.POST.get('password')
 
-        user = User.objects.get(Q(username=login) | Q(email=login))
+        user = User.objects.filter(Q(username=login) | Q(email=login)).first()
 
         if not user:
             return HttpResponse(json.dumps({'menssage': 'Login ou senha incorretos'}))
@@ -78,7 +78,13 @@ def validate_registration(request):
 
     raise Http404()
 
-    
+
+
+def logout(request):
+    if request.user.is_authenticated:
+        logout_user(request)
+        return redirect('home')
+    raise Http404()
 
 
 

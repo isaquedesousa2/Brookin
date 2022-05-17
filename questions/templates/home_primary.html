@@ -37,8 +37,8 @@
                         especialistas unem forças para responder às questões de dever de casa mais difíceis.</p>
                     <form action="{% url 'search' %}" method="GET">
                         <div class="search-box d-flex align-items-center justify-content-between">
-                            <input type="text" name="busca" id="search" placeholder="Qual a sua pergunta?">
-                            <button class="d-flex align-items-center justify-content-center"><i class="bi bi-search d-flex align-items-center justify-content-center"></i></button>
+                            <input type="text" name="busca" id="search" autocomplete="off" placeholder="Qual a sua pergunta?">
+                            <button type="submit" class="d-flex align-items-center justify-content-center"><i class="bi bi-search d-flex align-items-center justify-content-center"></i></button>
                         </div>
                     </form>
                 </div>

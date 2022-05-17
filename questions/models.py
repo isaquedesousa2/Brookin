@@ -30,7 +30,7 @@ class Comments(models.Model):
         return self.comment
 
 class Answers(models.Model):
-    user = models.ForeignKey(User, on_delete=models.SET_NULL,blank=True, null=True, verbose_name='Usuário')
+    user = models.ForeignKey(User, on_delete=models.SET_DEFAULT,default='Usuário excluido', verbose_name='Usuário')
     response = models.CharField(max_length=10000, verbose_name='Resposta')
     number_assessments = models.IntegerField(verbose_name='Número de avaliações', blank=True,  default=0)
     assessments = models.IntegerField(verbose_name='Avaliações', blank=True,  default=0)
@@ -56,15 +56,15 @@ class Answers(models.Model):
 
 class Questions(models.Model):
     levels = (
-            ('EF', 'Ensino fundamental (básico)'),
-            ('EM', 'Ensino médio (secundário)'),
-            ('ES', 'Ensino superior'),
+            ('Ensino fundamental (básico)', 'Ensino fundamental (básico)'),
+            ('Ensino médio (secundário)', 'Ensino médio (secundário)'),
+            ('Ensino superior', 'Ensino superior'),
     )
     was_answered = models.BooleanField(default=False, verbose_name='Foi respondida?')
     user = models.ForeignKey(User, on_delete=models.SET_NULL,null=True, verbose_name='Usuário')
     date = models.DateField(auto_now_add=True, verbose_name='Data de criação')
     category = models.ForeignKey(Category, on_delete=models.PROTECT, verbose_name='Categoria')
-    level = models.CharField(max_length=2, choices=levels)
+    level = models.CharField(max_length=50, choices=levels)
     question = models.CharField(max_length=20000, verbose_name='Questão')
     answers = models.ManyToManyField('Answers', related_name='answer', blank=True, verbose_name='Respostas')
 

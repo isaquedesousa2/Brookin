@@ -67,6 +67,7 @@ header {
     height: 100px;
     border: none;
     border-radius: 100px;
+    background-color: none;
     font-size: 24px;
     color: black;
     padding-left: 5px;
@@ -76,10 +77,15 @@ header {
     outline: none;
 }
 
+.search-box input::selection {
+    background-color: red;
+}
+
 .search-box input::placeholder{
     color: #767676;
     font-size: 24px;
 }
+
 
 .search-box button {
     border: none;
