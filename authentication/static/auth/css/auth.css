@@ -1,0 +1,64 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Lato', sans-serif;
+}
+
+.content {
+    width: 100%;
+    max-width: 600px;
+    padding: 30px;
+}
+
+.content-info h3 {
+    font-weight: 600;
+    text-align: center;
+}
+
+.content-info p {
+    font-weight: 400;
+    text-align: center;
+}
+
+.box-line .line {
+    width: 100%;
+    max-width: 300px;
+    height: 3px;
+    background-color: #E3EBF2;
+}
+
+.box-line span{
+    font-weight: 600;
+    padding: 0 10px 0 10px;
+}
+
+.content-account form .btn {
+    width: 100%;
+    font-weight: 600;
+    background-color: #30B16F;
+    border:none;
+}
+
+.form-control {
+    border: none;
+}
+
+.content-account form input {
+    background-color: #E3EBF2;
+}
+
+.content-account a {
+    width: 100px;
+    height: 10px;
+    color: #0172B6;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.content-account > p {
+    text-align: center;
+}
+

@@ -1,0 +1,294 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Lato', sans-serif;
+}
+
+body{
+    padding-bottom: 100px;
+}
+
+.box-questions {
+    padding: 20px 30px;
+    border: 2px solid #E3EBF2;
+}
+
+.question-line-1 .questions-info i {
+    color: gray;
+    font-size: 30px;
+}
+
+.question-line-1 .questions-info {
+    font-weight: 700;
+}
+
+.question-line-2 {
+    padding: 10px;
+}
+
+.question-line-3 {
+    
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+.question-line-3 .btn {
+    width: 100%;
+}
+
+.modal-content textarea{
+    height: 600px;
+}
+
+.modal-content button {
+    width: 100%;
+}
+
+.answers-input {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    border-radius: 4px;
+    padding-top: 20px;
+}
+
+.answers-input i {
+    color: grey;
+    font-size: 25px;
+}
+
+.textarea{
+    width: 100%;
+    font-size: 16px;
+    border: none;
+    color: black;
+    padding: 10px;
+    border:2px solid #E3EBF2;
+    resize: none;
+    max-height: 200px;
+}
+
+textarea:focus {
+    border-color: #0B5ED7;
+    outline: none;
+    background-color: white;
+}
+
+textarea::-webkit-scrollbar {
+    width: 0px;
+}
+
+.answers-input input[type="text"]:focus {
+    outline: none;
+}
+
+.answers {
+    border: 2px solid #E3EBF2;
+    margin-top: 50px;
+}
+
+.answers h1 {
+    padding: 20px 30px;
+    font-size: 20px;
+    font-weight: 700;
+    border-bottom: 2px solid #E3EBF2;
+}
+
+.answers .answers-input{
+    padding: 20px 30px;
+}
+
+.answers-line-1 {
+    padding: 20px 30px;
+    font-weight: 700;
+}
+
+.answers-line-1 .answers-info i{
+    color: gray;
+    font-size: 30px;
+}
+
+.answers-description {
+    padding: 0 30px;
+}
+
+.answers-assessment {
+    padding: 20px 30px;
+
+}
+.answers-like {
+    padding: 0 10px;
+    transition: 0.2s ease-in-out;
+    border-radius: 20px;
+}
+
+.answers-like i {
+    color: #FF341A;
+    font-size: 20px;
+}
+
+.answers-like span{
+    color: #FF7968;
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.answers-stars {
+    padding-left: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.answers-stars i {
+    height: 40px;
+    color: #C98600;
+    font-size: 22px;
+    padding: 0;
+}
+
+.answers-stars .star-bk:nth-child(5){
+    padding-right: 10px;
+}
+
+.answers-stars span{
+    font-weight: 700;
+    padding-right: 5px;
+}
+
+.answers-stars span:nth-last-child(1){
+    font-size: 14px;
+}
+
+.comments {
+    padding: 5px 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 10px;
+    
+}
+
+.border {
+    margin: 0 30px;
+    border-top: 2px solid #E3EBF2;
+}
+
+.comments i {
+    color: gray;
+    font-size: 20px;
+}
+
+
+
+.account-box {
+    width: 100%;
+    border: 2px solid #E3EBF2;
+}
+
+.profile-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 30px 30px 0px 30px;
+}
+
+.profile-info span{
+    font-weight: 600;
+    font-size: 20px;
+}
+
+.profile-info i {
+    color: grey;
+    font-size: 35px;
+}
+
+.account-profile-bottom {
+    padding: 30px 0 30px 30px;
+    display: flex;
+    gap: 30px;
+}
+
+.profile-spots {
+    display: flex;
+    gap: 15px;
+    background-color: #EBEEFF;
+    align-items: center;
+    padding: 5px 10px;
+    border-radius: 10px;
+    font-weight: 600;
+}
+
+.profile-spots i {
+    color: black;
+}
+
+.plan {
+    padding: 20px 30px 20px 30px;
+    border-top: 2px solid #E3EBF2;
+    border-bottom: 2px solid #E3EBF2;
+}
+
+.plan p {
+    font-size: 13px;
+    font-weight: 400;
+}
+
+.plan span {
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.account-config {
+    padding: 20px 30px 20px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    transition: 0.1s ease-in;
+}
+
+.account-config:hover {
+    background-color: #EBEEFF;
+}
+
+.account-config span {
+    font-weight: 700;
+}
+
+.account-config i {
+    font-size: 22px;
+}
+
+@media (max-width: 1200px) {
+    .account-box {
+        display: none;
+    }
+    .content-question {
+        width: 100%;
+    }
+}
+
+@media (max-width: 500px){
+    .answers-assessment {
+        gap: 15px;
+        flex-direction: column;
+    }
+    .questions-info i {
+        font-size: 13px;
+    }
+    .questions-info-box {
+        display: flex;
+        flex-direction: column;
+        font-size: 13px;
+    }
+    .answers-input {
+        display: flex;
+        flex-direction: column;
+    }
+    .answers-input button{
+        width: 100%;
+    }
+}

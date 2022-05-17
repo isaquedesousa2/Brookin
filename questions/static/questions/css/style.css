@@ -1,0 +1,170 @@
+@import url('https://fonts.googleapis.com/css2?family=Bangers&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Lato', sans-serif;
+}
+
+.font{
+    font-family: 'Bangers', cursive;
+    font-size: 35px;
+}
+
+.container-fluid {
+    max-width: 1400px;
+}
+
+.background {
+    width: 100%;
+    padding-top: 0px;
+    background-color: #D9F0FF;
+}
+
+header {
+    padding: 20px 0;
+}
+
+.logo a {
+    color: black;
+    text-decoration: none;
+}
+
+.nav a{
+    color: black;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 15px;
+}
+
+.content-box {
+    width: 100%;
+    max-width: 700px;
+    gap: 50px;
+}
+
+.content-box h1{
+    font-size: 78px;
+    font-weight: 700;  
+}
+
+.content-box p{
+    font-size: 18px;  
+}
+
+.search-box {
+    width: 100%;
+    height: 100px;
+    border-radius: 100px;
+    background-color: white;
+    padding: 0 20px;
+}
+
+.search-box input{
+    width: 100%;
+    height: 100px;
+    border: none;
+    border-radius: 100px;
+    font-size: 24px;
+    color: black;
+    padding-left: 5px;
+}
+
+.search-box input:focus{
+    outline: none;
+}
+
+.search-box input::placeholder{
+    color: #767676;
+    font-size: 24px;
+}
+
+.search-box button {
+    border: none;
+    border-radius: 100%;
+}
+
+.search-box .icon{
+    cursor: pointer;
+}
+
+.search-box i {
+    color: white;
+    width: 60px;
+    height: 60px;
+    border-radius: 100%;
+    background-color: black;
+}
+
+.search-box i:hover{
+    background-color: #283037;
+}
+
+.content-img img {
+    padding-left: 50px;
+    width: 100%;
+    max-width: 400px;
+}
+
+.categorys {
+    width: 100%;
+    height: 100px;
+    padding-top: 0;
+    background-color: #F5F8FA;
+}
+
+@media (max-width: 850px) {
+    header {
+        padding-top: 10px;
+    }
+    .content-box h1{
+        font-size: 58px;
+        font-weight: 700;  
+    }
+    .search-box{
+        height: 75px;
+    }
+    .search-box input{
+        font-size: 20px;
+        height: 75px;
+    }
+    .search-box input::placeholder{
+        font-size: 20px;
+    }
+    .search-box i {
+        width: 50px;
+        height: 50px;
+    }
+}
+
+@media (max-width: 760px) {
+    .nav a:nth-child(1), a:nth-child(3){
+        display: none;
+        font-size: 12px;
+    }
+    .content-box h1{
+        font-size: 39px;
+    }
+    .content-box{
+        gap: 10px;
+    }
+    .search-box{
+        height: 54px;
+    }
+    .search-box input{
+        font-size: 18px;
+        height: 54px;
+    }
+    .search-box input::placeholder{
+        font-size: 18px;
+    }
+    .search-box i {
+        width: 40px;
+        height: 40px;
+    }
+    .content-img img {
+        display: none;
+    }
+}

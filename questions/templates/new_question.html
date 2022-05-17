@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'questions/css/new_question.css' %}">
+{% endblock head %}
+
+{% block content %}
+
+<div class="main-content container-sm">
+    <form action="{% url 'new_question' %}" method="POST">{% csrf_token %}
+        <div class="form-group mt-3">
+            <label for="exampleFormControlTextarea1">Categoria</label>
+            <select name="category" class="form-control mt-1">
+                {% for category in categorys %}
+                    <option>{{ category.category }}</option>
+                {% endfor %}
+            </select> 
+        </div>
+        <div class="form-group mt-3">
+            <label for="exampleFormControlTextarea1">Nivel</label>
+            <select name="level" class="form-control mt-1">
+                <option selected value="EF">Ensino fundamental (básico)</option>
+                <option value="EM">Ensino médio (secundário)</option>
+                <option value="ES">Ensino superior</option>
+            </select> 
+        </div>
+        <div class="form-group mt-3">
+          <label for="exampleFormControlTextarea1">Pergunta</label>
+          <textarea class="form-control" name="question" id="exampleFormControlTextarea1" rows="3"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary mt-3">Enviar</button>
+      </form>
+</div>
+
+{% endblock content %}

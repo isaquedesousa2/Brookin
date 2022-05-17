@@ -1,0 +1,109 @@
+@import url('https://fonts.googleapis.com/css2?family=Bangers&display=swap');
+
+.font{
+    font-family: 'Bangers', cursive;
+    font-size: 30px;
+}
+
+header{
+    border-bottom: 2px solid #E3EBF2;
+    padding: 20px 0;
+}
+
+header a {
+    color: black;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+header a:hover {
+    color: black ;
+}
+
+header nav {
+    display: flex;
+    justify-content: space-between;
+}
+
+.nav-top i {
+    display: none;
+    font-size: 25px;
+    cursor: pointer;
+    color: #798A9A;
+}
+
+.container-fluid {
+    max-width: 1600px;
+}
+
+header nav form {
+    width: 100%;
+}
+
+.search-container  {
+    width: 100%;
+    max-width: 800px;
+    background-color: #E3EBF2;
+    border-radius: 10px;
+    margin: 0 10px;
+}
+
+.search-container input[type="text"]{
+    width: 100%;
+    height: 40px;
+    background-color: #E3EBF2;
+    border: none;
+    color: #798A9A;
+    border-radius: 10px;
+    padding: 0 10px 0 10px;
+}
+
+.search-container input[type="text"]:focus {
+    outline: none;
+}
+
+.search-container i {
+    color: #798A9A;
+    padding-right: 10px;
+}
+
+nav .options a {
+    font-weight: 600;
+    font-size: 16px;
+    text-decoration: none;
+    color: black;
+}
+
+nav .options i {
+    font-size: 25px;
+    color: #798A9A;
+}
+
+.navbar .options .btn{
+    font-weight: 600;
+    font-size: 15px;
+    border-radius: 50px;
+    color: white;
+    background-color: #30B16F;
+}
+
+@media (max-width: 768px) {
+    header nav {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    header nav .options {
+        display: none !important;
+    }
+    .nav-top i {
+        display: block;
+    }
+    .nav-top {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+}

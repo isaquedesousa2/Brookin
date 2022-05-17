@@ -1,0 +1,107 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'questions/css/secondary.css' %}">
+{% endblock head %}
+
+{% block title %}Brookin{% endblock title %}
+
+{% block content %}
+
+<div class="main-page container-fluid pt-5">
+    <div class="content row">
+        <div class="categorys col-2 rounded">
+            <p>Categorias</p>
+            
+            {% for category in categorys %}
+            <a href="{% url 'filter_category' category.id %}">{{ category.category }}</a>
+            {% endfor %}
+           
+        </div>
+        <div class="questions col-6">
+            <div class="box-help">
+                <div class="help-info">
+                    <h1>Qual a sua dúvida?</h1>
+                <a href="{% url 'new_question' %}" class="btn btn-primary">Faça uma pergunta</a>
+                </div>
+            </div>
+            <div class="box-filter">
+                <form action="{% url 'home' %}" method="POST">{% csrf_token %}
+                    <div class="options d-flex gap-5">
+                        <select name="level" class="form-select" aria-label="Default select example">
+                            <option selected value="T">Todos os niveis</option>
+                            <option value="EF">Ensino fundamental (básico)</option>
+                            <option value="EM">Ensino médio (secundário)</option>
+                            <option value="ES">Ensino superior</option>
+                          </select>
+                          <select name="response" class="form-select" aria-label="Default select example">
+                            <option selected value="1">Todas</option>
+                            <option value="False">Sem respostas</option>
+                            <option value="True">Respondidas</option>
+                          </select>
+                    </div>
+                      <button type="submit" class="btn btn-primary">Filtrar</button>
+                </form>
+            </div>
+
+            {% if questions %}
+            {% for question in questions %}
+            <div class="box-questions">
+                <div class="question-line-1 d-flex justify-content-between">
+                    <div class="questions-info d-flex align-items-center gap-2">
+                        <i class="bi bi-person-circle"></i>
+                        <div class="questions-info-box">
+                            <span>{{ question.category }}</span>
+                            <span>{{ question.date }}<span>
+                        </div>
+                    </div>
+                </div>
+                <div class="question-line-2 text-break"><a href="{% url 'question' question.id %}">{{ question.question }}</a></div>
+                <div class="question-line-3"><a href="{% url 'question' question.id %}" class="btn btn-primary">Responder</a></div>
+            </div>
+            {% endfor %}
+            {% else %}
+            <div class="box-questions rounded d-flex justify-content-center">
+                <h3> Sem resultados </h3>
+            </div>
+            {% endif %}
+        </div>
+        <div class="account col-3">
+            
+            <div class="account-box rounded">
+                {% if request.user.is_authenticated %}
+                <div class="account-profile">
+                    <div class="profile-info">
+                        <i class="bi bi-person-circle"></i>
+                        <span>Isaque de Sousa</span>
+                    </div>
+                    <div class="account-profile-bottom">
+                        
+                        <div class="profile-spots">
+                        <i class="bi bi-star-fill"></i>
+                        <span>0</span>
+                        </div>
+                    </div>
+                    <div class="plan">
+                        <p>Plano atual</p>
+                        <span>Plano Básico</span>
+                    </div>
+                    <div class="account-config">
+                        <span>Configurações de conta</span>
+                        <i class="bi bi-box-arrow-in-right"></i>
+                    </div>
+                </div>
+            </div>
+            {% else %}
+            <div class="p-3">
+                <h4>Faça login ou cadastre-se para acessar sua conta<h4>
+                <a class="btn btn-primary" href="{% url 'login' %}">Login</a>
+                <a class="btn btn-success" href="{% url 'register' %}">Cadastra-se</a>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

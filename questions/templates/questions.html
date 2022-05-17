@@ -1,0 +1,248 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load filter %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'questions/css/questions.css' %}">
+{% endblock head %}
+
+{% block title %}Brookin{% endblock title %}
+
+{% block content %}
+{{ question.answers.length }}
+<div class="main-page container-fluid pt-5" onload="aa()">
+    <div class="content row justify-content-center">
+        <div class="content-question col-6">
+            <div class="questions">
+                <div class="box-questions rounded">
+                    <div class="question-line-1 d-flex justify-content-between">
+                        <div class="questions-info d-flex align-items-center gap-2">
+                            <i class="bi bi-person-circle"></i>
+                            <div class="questions-info-box">
+                                <span>{{ question.category }} </span>
+                                <span>{{ question.date }}<span>
+                            </div>
+                        </div>
+                    </div>
+
+                    
+                    <div class="question-line-2 text-break">{{ question.question }}</div>
+
+
+                    {% if request.user != question.user %}
+                    <div class="question-line-3">
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal">Responder</button>
+                    </div>
+
+                      <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title" id="exampleModalLabel">Nova resposta</h5>
+                            </div>
+                            <div class="modal-body">
+                              <form action="{% url 'add_response' question.id %}" method="POST">{% csrf_token %}
+                                <div class="form-group">
+                                  <label for="message-text" class="col-form-label">Resposta</label>
+                                  <textarea class="form-control mb-4" name="response" id="message-text"></textarea>
+                                </div>   
+                                    <button type="submit" class="btn btn-primary">Enviar</button>
+                              </form>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      
+                    {% endif %}
+
+                </div>
+            </div>
+            {% if question.answers.all %}
+            {% for answer in question.answers.all %}
+            <span id="{{ answer.id }}" class="assessments"></span>
+            <div class="answers rounded">
+                <h1>Resposta</h1>
+                <div class="answers-line-1">
+                    <div class="answers-info d-flex align-items-center gap-2">
+                        <i class="bi bi-person-circle"></i>
+                        <span class="user-answers">{{ answer.user }}</span>
+                    </div>
+                </div>
+                <div class="answers-description text-break">
+                    {{ answer.response }}
+                </div>
+                <div class="answers-assessment d-flex align-items-center">
+                    {% if answer.likes_voted %}
+                    <div id="answers-likes-{{ answer.pk }}" class="answers-like d-flex align-items-center gap-2"
+                        value="success">
+                        <i id="icon-like-{{ answer.pk }}" class="bi bi-heart-fill"></i>
+                        <span>OBRIGADO</span>
+                        <span id="answer-likes">{{ answer.likes }}</span>
+                    </div>
+                    {% else %}
+                    <div id="answers-likes-{{ answer.pk }}" onclick="add_like({{ answer.id }})"
+                        class="answers-like d-flex align-items-center gap-2" value="none">
+                        <i id="icon-like-{{ answer.pk }}" class="bi bi-heart"></i>
+                        <span>OBRIGADO</span>
+                        <span id="answer-likes-{{ answer.pk }}">{{ answer.likes }}</span>
+                    </div>
+                    {% endif %}
+
+
+
+                    <div class="answers-stars">
+                        {% if answer.assessments_voted %}
+                        <div id="div-star-1" class="star-bk">
+                            <i id="star-1-{{ answer.id }}" class="bi bi-star"></i>
+                        </div>
+                        <div id="div-star-2" class="star-bk">
+                            <i id="star-2-{{ answer.id }}" class="bi bi-star"></i>
+                        </div>
+                        <div id="div-star-3" class="star-bk">
+                            <i id="star-3-{{ answer.id }}" class="bi bi-star"></i>
+                        </div>
+                        <div id="div-star-4" class="star-bk">
+                            <i id="star-4-{{ answer.id }}" class="bi bi-star"></i>
+                        </div>
+                        <div id="div-star-5" class="star-bk">
+                            <i id="star-5-{{ answer.id }}" class="bi bi-star"></i>
+                        </div>
+                        <span id="assessments-{{ answer.id }}" type="hidden"
+                            value="{{ answer.assessments_voted }}"></span>
+                        {% else %}
+                        <div onclick="add_assessments({{ answer.id }}, 1)" id="div-star-1" class="star-bk">
+                            <i id="star-1-{{ answer.id }}" class="bi bi-star"></i>
+                        </div>
+                        <div onclick="add_assessments({{ answer.id }}, 2)" id="div-star-2" class="star-bk">
+                            <i id="star-2-{{ answer.id }}" class="bi bi-star"></i>
+                        </div>
+                        <div onclick="add_assessments({{ answer.id }}, 3)" id="div-star-3" class="star-bk">
+                            <i id="star-3-{{ answer.id }}" class="bi bi-star"></i>
+                        </div>
+                        <div onclick="add_assessments({{ answer.id }}, 4)" id="div-star-4" class="star-bk">
+                            <i id="star-4-{{ answer.id }}" class="bi bi-star"></i>
+                        </div>
+                        <div onclick="add_assessments({{ answer.id }}, 5)" id="div-star-5" class="star-bk">
+                            <i id="star-5-{{ answer.id }}" class="bi bi-star"></i>
+                        </div>
+                        <span id="assessments-{{ answer.id }}" type="hidden"
+                            value="{{ answer.assessments_voted }}"></span>
+                        {% endif %}
+                        <span id="count_answer-{{ answer.id }}">{{ answer.get_average|format_float }}</span>
+
+                        <span id="number_assessments-{{ answer.id }}">({{ answer.number_assessments }} voto)</span>
+                    </div>
+                </div>
+                <div class="border"></div>
+                <div id="comments-{{ answer.id }}" class="comments">
+                    {% for comment in answer.comments.all %}
+                    <div class="comments-all d-flex gap-3 align-items-center">
+                        <i class="bi bi-person-circle"></i>
+                        <span>{{ comment.comment }}</span>
+                    </div>
+                    {% endfor %}
+                </div>
+                <div class="answers-input">
+                    <textarea id="commnet-{{ answer.id }}" class="rounded textarea"
+                        placeholder="Deixe seu comentário"></textarea>
+                    <button onclick="add_comment({{ answer.id }})" class="btn btn-success">Enviar</button>
+                </div>
+            </div>
+            {% endfor %}
+            {% else %}
+            <span class="mt-5 d-flex justify-content-center"><strong>Aguardando respostas...</strong></span>
+            {% endif %}
+        </div>
+        <div class="account col-3">
+            <div class="account-box rounded">
+                <div class="account-profile">
+                    <div class="profile-info">
+                        <i class="bi bi-person-circle"></i>
+                        <span>{{ account.user }}</span>
+                    </div>
+                    <div class="account-profile-bottom">
+                        <div class="profile-spots">
+                            <i class="bi bi-star-fill"></i>
+                            <span>{{ account.stars }}</span>
+                        </div>
+                    </div>
+                    <div class="plan">
+                        <p>Plano atual</p>
+                        <span>Plano Básico</span>
+                    </div>
+                    <div class="account-config">
+                        <span>Configurações de conta</span>
+                        <i class="bi bi-box-arrow-in-right"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="{% static 'questions/js/scripts.js' %}"></script>
+<script>
+    function add_like(id) {
+        var likes_value = $('#answer-likes-' + id);
+        var div_likes = $('#answers-likes-' + id);
+        var icon = $('#icon-like-' + id);
+        console.log(likes_value);
+        $.ajax({
+            url: "{% url 'add_like' %}",
+            method: 'POST',
+            data: {
+                'csrfmiddlewaretoken': '{{ csrf_token }}',
+                'answer_id': id
+            },
+            success: function (response) {
+                var response = JSON.parse(response);
+                likes_value.html(response.likes);
+                div_likes.attr('value', 'True');
+                icon.attr('class', 'bi bi-heart-fill');
+
+            }
+        });
+    }
+
+    function add_assessments(id, assessments) {
+        const number_assessments = $('#number_assessments-' + id);
+        $.ajax({
+            url: "{% url 'add_assessments' %}",
+            method: 'POST',
+            data: {
+                'csrfmiddlewaretoken': '{{ csrf_token }}',
+                'answer_id': id,
+                'assessments': assessments,
+            },
+            success: function (response) {
+                location.reload();
+            }
+        });
+    }
+
+    function add_comment(id) {
+        const commnet = $('#commnet-' + id);
+        const comments = document.getElementById('comments-' + id);
+        const textarea = document.getElementById('commnet-' + id);
+
+        $.ajax({
+            url: "{% url 'add_commnet' %}",
+            method: 'POST',
+            data: {
+                'csrfmiddlewaretoken': '{{ csrf_token }}',
+                'answer_id': id,
+                'commnet': commnet.val(),
+            },
+            success: function (response) {
+                response = JSON.parse(response);
+                textarea.value = '';
+                comments.innerHTML = '';
+                for (i = 0; i < response.comments.length; i++) {
+                    comments.innerHTML += '<div class="comments-all d-flex gap-3 align-items-center"><i class="bi bi-person-circle"></i> <span>' + response.comments[i][0][1] + '</span></div>'
+                }
+
+            }
+        });
+    }
+</script>
+{% endblock content %}

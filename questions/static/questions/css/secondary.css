@@ -1,0 +1,252 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Lato', sans-serif;
+
+}
+
+body{
+    padding-bottom: 100px;
+}
+
+.content {
+    display: flex;
+    justify-content: center;
+}
+
+.categorys {
+    display: flex;
+    flex-direction: column;
+}
+
+.categorys p {
+    text-align: start;
+    color: black;
+    font-weight: 900;
+    border-bottom: 2px solid #E3EBF2;
+}
+
+.categorys a {
+    padding-top: 15px;
+}
+
+.categorys a {
+    text-decoration: none;
+    color: black;
+    font-weight: 600;
+}
+
+.categorys a:hover {
+    text-decoration: underline;
+}
+
+.box-help {
+    padding: 50px 0;
+    border: 2px solid #E3EBF2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px 5px 0 0;
+}
+
+.help-info {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.box-help h1 {
+    font-size: 51px;
+    font-weight: 700;
+}
+
+.box-filter {
+    padding: 50px;
+    border-left: 2px solid #E3EBF2;
+    border-right: 2px solid #E3EBF2;
+}
+
+.box-filter form button {
+    margin-top: 20px;
+    width: 100%;
+}
+
+.box-filter .form-select {
+    background-color: #E3EBF2;
+}
+
+.box-filter select:focus{
+    border: none;
+    outline: none;
+    background-color: transparent;
+}
+
+.box-questions {
+    padding: 20px 50px;
+    border-left: 2px solid #E3EBF2;
+    border-right: 2px solid #E3EBF2;
+    border-bottom: 2px solid #E3EBF2;
+}
+
+.question-line-1 .questions-info i {
+    color: gray;
+    font-size: 30px;
+}
+
+.question-line-1 .questions-info {
+    font-weight: 700;
+}
+
+.question-line-2 {
+    padding: 10px 0;
+    max-height: 80px;
+    overflow: hidden;
+}
+
+.question-line-2 a {
+    text-decoration: none;
+    color: black;
+    
+}
+
+.question-line-2 a:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.question-line-3 {
+    padding-top: 30px;
+    display: flex;
+    justify-content: right;
+}
+
+.account-box {
+    width: 100%;
+    border: 2px solid #E3EBF2;
+}
+
+.profile-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 30px 30px 0px 30px;
+}
+
+.profile-info span{
+    font-weight: 600;
+    font-size: 20px;
+}
+
+.profile-info i {
+    color: grey;
+    font-size: 35px;
+}
+
+.account-profile-bottom {
+    padding: 30px 0 30px 30px;
+    display: flex;
+    gap: 30px;
+}
+
+.profile-spots {
+    display: flex;
+    gap: 15px;
+    background-color: #EBEEFF;
+    align-items: center;
+    padding: 10px;
+    border-radius: 10px;
+    font-weight: 700;
+}
+
+.profile-spots i {
+    color: black;
+}
+
+.plan {
+    padding: 20px 30px 20px 30px;
+    border-top: 2px solid #E3EBF2;
+    border-bottom: 2px solid #E3EBF2;
+}
+
+.plan p {
+    font-size: 13px;
+    font-weight: 400;
+}
+
+.plan span {
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.account-config {
+    padding: 20px 30px 20px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    transition: 0.1s ease-in;
+}
+
+.account-config:hover {
+    background-color: #EBEEFF;
+}
+
+.account-config span {
+    font-weight: 700;
+}
+
+.account-config i {
+    font-size: 22px;
+}
+
+@media (max-width: 1200px){
+    .account-box {
+        display: none;
+    }
+
+    .questions {
+        width: 100%;
+        max-width: 80%;
+    }
+}
+
+@media (max-width: 700px){
+    .categorys {
+        display: none;
+    }
+
+    .questions {
+        max-width: 100%;
+    }
+    .help-info h1 {
+        font-size: 40px;
+    }
+}
+
+@media (max-width: 530px){
+    .help-info {
+        text-align: center;
+    }
+    .options {
+        flex-direction: column;
+        flex-wrap: wrap;
+        gap:10px !important;
+    }
+    .question-line-3 a {
+        width: 100%;
+    }
+    .questions-info i {
+        font-size: 13px;
+    }
+    .questions-info-box {
+        display: flex;
+        flex-direction: column;
+        font-size: 13px;
+    }
+    .box-filter, .box-questions, .help-info {
+        padding: 30px;
+    }
+}
