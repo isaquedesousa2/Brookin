@@ -10,14 +10,6 @@
 <div class="main-content container-sm">
     <form action="{% url 'new_question' %}" method="POST">{% csrf_token %}
         <div class="form-group mt-3">
-            <label for="exampleFormControlTextarea1">Categoria</label>
-            <select name="category" class="form-control mt-1">
-                {% for category in categorys %}
-                    <option>{{ category.category }}</option>
-                {% endfor %}
-            </select> 
-        </div>
-        <div class="form-group mt-3">
             <label for="exampleFormControlTextarea1">Nivel</label>
             <select name="level" class="form-control mt-1">
                 <option selected value="EF">Ensino fundamental (básico)</option>

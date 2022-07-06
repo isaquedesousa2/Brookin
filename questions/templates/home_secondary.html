@@ -11,14 +11,6 @@
 
 <div class="main-page container-fluid pt-5">
     <div class="content row">
-        <div class="categorys col-2 rounded">
-            <p>Categorias</p>
-            
-            {% for category in categorys %}
-            <a href="{% url 'filter_category' category.id %}">{{ category.category }}</a>
-            {% endfor %}
-           
-        </div>
         <div class="questions col-6">
             <div class="box-help">
                 <div class="help-info">
@@ -74,7 +66,7 @@
                 <div class="account-profile">
                     <div class="profile-info">
                         <i class="bi bi-person-circle"></i>
-                        <span>Isaque de Sousa</span>
+                        <span>{{ request.user }}</span>
                     </div>
                     <div class="account-profile-bottom">
                         

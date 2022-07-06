@@ -1,22 +1,10 @@
-from msilib.schema import Icon
-from tabnanny import verbose
 from django.db import models
 from authentication.models import User
-from django.utils.safestring import mark_safe
+
 
 class Base(models.Model):
     date_create = models.DateTimeField(auto_now_add=True)
     date_changed = models.DateTimeField(auto_now=True)
-
-class Category(models.Model):
-    category = models.CharField( max_length=50, verbose_name='Categoria')
-
-    class Meta:
-        verbose_name = 'Categoria'
-        verbose_name_plural = 'Categorias'
-
-    def __str__(self):
-        return self.category
 
 class Comments(models.Model):
     user = models.ForeignKey(User, on_delete=models.SET_NULL,blank=True, null=True, verbose_name='Usuário')
@@ -63,7 +51,6 @@ class Questions(models.Model):
     was_answered = models.BooleanField(default=False, verbose_name='Foi respondida?')
     user = models.ForeignKey(User, on_delete=models.SET_NULL,null=True, verbose_name='Usuário')
     date = models.DateField(auto_now_add=True, verbose_name='Data de criação')
-    category = models.ForeignKey(Category, on_delete=models.PROTECT, verbose_name='Categoria')
     level = models.CharField(max_length=50, choices=levels)
     question = models.CharField(max_length=20000, verbose_name='Questão')
     answers = models.ManyToManyField('Answers', related_name='answer', blank=True, verbose_name='Respostas')

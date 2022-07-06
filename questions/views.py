@@ -1,16 +1,16 @@
 import json
 from django.http import Http404, HttpResponse
 from django.shortcuts import render, redirect
-from .models import Answers, Questions, Comments, Category
+from .models import Answers, Questions, Comments
 from account.models import Account
 from django.contrib.auth.decorators import login_required
 
 def home(request):
     if request.user.is_authenticated:
-        categorys = Category.objects.all() 
+        
         questions = Questions.objects.order_by('-date')
 
-        return render(request, 'home_secondary.html', {'questions': questions, 'categorys': categorys})
+        return render(request, 'home_secondary.html', {'questions': questions})
             
     else:   
         return render(request, 'home_primary.html')
@@ -96,27 +96,17 @@ def add_response(request, id):
 @login_required(login_url='login')
 def new_question(request):
     if request.method == 'GET':
-        categorys = Category.objects.all()
-        return render(request, 'new_question.html', {'categorys': categorys})
+        return render(request, 'new_question.html')
     else:
         category = request.POST.get('category')
         level = request.POST.get('level')
         question = request.POST.get('question')
-        category = Category.objects.get(category=category)
-        question = Questions(user=request.user, category=category, level=level, question=question)
+        question = Questions(user=request.user, level=level, question=question)
         question.save()
         return redirect('/')
 
-
-def filter_category(request, id):
-    categorys = Category.objects.all()
-    questions = Questions.objects.filter(category=Category.objects.filter(id=int(id)).first())
-
-    return render(request, 'home_secondary.html', {'questions': questions, 'categorys': categorys})
-
 def filter_options(request):
     if request.method == 'GET':
-        categorys = Category.objects.all()
         level = request.POST.get('level')
         response = request.POST.get('response')
 
@@ -132,15 +122,14 @@ def filter_options(request):
         if level == 'Todos os niveis' and response != 'Todas':
             questions = Questions.objects.filter(was_answered=response).order_by('-date')
 
-        return render(request, 'home_secondary.html', {'questions': questions, 'categorys': categorys})
+        return render(request, 'home_secondary.html', {'questions': questions})
 
     raise Http404()
 
 
 def search(request):
     if request.method == 'GET':
-        categorys = Category.objects.all()
         search = request.GET.get('busca')
         questions = Questions.objects.filter(question__icontains=search)
         
-        return render(request, 'home_secondary.html', {'questions': questions, 'categorys': categorys})
+        return render(request, 'home_secondary.html', {'questions': questions})
