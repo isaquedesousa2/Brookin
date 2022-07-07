@@ -1,7 +1,3 @@
-email_validator
-django 
-venv
-
 <h1 align="center">Brookin</h1>
 <p align="center">Um pequeno projeto realizado com base no <a href="https://brainly.com.br/">Brainly</a> para testa e melhorar meus conhecimentos sobre Python e Django
 <p>
