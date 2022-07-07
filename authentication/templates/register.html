@@ -33,16 +33,16 @@
             <form>
                 {% csrf_token %}    
                 <div class="mt-3">
-                    <input type="text" class="form-control" id="username" placeholder="Usuário">
+                    <input type="text" class="form-control" id="username" placeholder="Usuário" autocomplete="off">
                 </div> 
                 <div class="mt-3">
-                    <input type="email" class="form-control" id="email" placeholder="E-mail">
+                    <input type="email" class="form-control" id="email" placeholder="E-mail" autocomplete="off">
                 </div>
                 <div class="mt-3">
-                    <input type="password" class="form-control" id="password" placeholder="Senha">
+                    <input type="password" class="form-control" id="password" placeholder="Senha" autocomplete="off">
                 </div>
                 <div class="mt-3">
-                    <input type="password" class="form-control" id="password_confirm" placeholder="Confirme sua senha">
+                    <input type="password" class="form-control" id="password_confirm" placeholder="Confirme sua senha" autocomplete="off">
                 </div>
                 <p id="check_result" class="mt-3"></p>
                 <button onclick="register_ajax()" type="button" class="btn btn-primary mt-3">Cadastra-se</button>
