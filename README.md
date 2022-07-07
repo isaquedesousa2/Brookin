@@ -34,17 +34,19 @@ Além disto, é bom ter um editor para trabalhar com o código, como o <a href="
 ```
 git clone https://github.com/isaquedesousa2/Brookin.git
 ```
-
 ### Acesse a pasta do projeto no terminal
 ```
 cd Brookin
 ```
-
 ### Instale o ambiente virtual
 ```
 python -m venv venv
 ```
-
+### Ative o ambiente virtual
+```
+venv/bin/activate (Linux ou macOS)
+venv/Scripts/Activate (Windows)
+```
 ### Instale os requirements
 ```
 python -r requirements.txt
@@ -53,7 +55,6 @@ python -r requirements.txt
 ```
 python manage.py migrate
 ```
-
 ### Execute o servidor 
 ```
 python manage.py runserver
@@ -66,7 +67,7 @@ python manage.py runserver
 As seguintes ferramentas foram utilizadas na construção deste projeto:
 
 ### [Django](https://www.djangoproject.com/)
-### [Bootstrap](https://icons.getbootstrap.com/)
+### [Bootstrap](https://getbootstrap.com/)
 
 <br />
 
