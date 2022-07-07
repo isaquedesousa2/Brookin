@@ -66,6 +66,7 @@ python manage.py runserver
 As seguintes ferramentas foram utilizadas na construção deste projeto:
 
 ### [Django](https://www.djangoproject.com/)
+### [Bootstrap](https://icons.getbootstrap.com/)
 
 <br />
 
